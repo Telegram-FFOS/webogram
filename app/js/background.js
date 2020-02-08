@@ -1,18 +1,20 @@
 /*!
- * Webogram v0.1 - messaging web application for MTProto
+ * Webogram v0.7.0 - messaging web application for MTProto
  * https://github.com/zhukov/webogram
  * Copyright (C) 2014 Igor Zhukov <igor.beatle@gmail.com>
  * https://github.com/zhukov/webogram/blob/master/LICENSE
  */
 
-chrome.app.runtime.onLaunched.addListener(function(launchData) {
+chrome.app.runtime.onLaunched.addListener(function (launchData) {
+  var isWindows = typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.match(/windows/i) ? true : false
   chrome.app.window.create('../index.html', {
-    bounds: {
-      width: 1100,
+    id: 'webogram-chat',
+    innerBounds: {
+      width: 1000,
       height: 700
     },
-    minWidth: 1100,
-    minHeight: 700,
-    frame: 'chrome'
-  });
-});
+    minWidth: 320,
+    minHeight: 400,
+    frame: isWindows ? { color: '#5682a3' } : 'chrome'
+  })
+})
